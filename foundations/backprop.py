@@ -8,6 +8,7 @@ class Solution:
         z = np.dot(x, w) + b
         y_hat = 1 / (1 + np.exp(-z))
         error = y_hat - y_true
-        dw = np.dot(((y_hat - y_true)* (y_hat*(1 - y_hat))), x)
-        db = ((y_hat - y_true)* (y_hat*(1 - y_hat)))
-        return tuple([np.round(dw, 5), np.round(db, 5)])
+        delta = (y_hat - y_true) * (y_hat * (1 - y_hat))
+        dw = delta * x
+        db = delta
+        return np.round(dw, 5), np.round(db, 5)
